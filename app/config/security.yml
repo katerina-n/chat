@@ -11,6 +11,8 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username_email
+        admin_user_mock:
+            id: app.security.admin_user_mock_provider
 
     firewalls:
         main:
@@ -23,10 +25,21 @@ security:
             logout:       true
             anonymous:    true
 
+            light_saml_sp:
+                # Symfony's default options
+                # provides user from given username
+                provider: admin_user_mock
+                login_path: /backoffice/saml/login
+                check_path: /backoffice/saml/login_check
+                require_previous_session: false
+#                username_mapper: lightsaml_sp.username_mapper.simple
+
     access_control:
+        - { path: ^/backoffice/saml, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, role: ROLE_USER }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/accaunt/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/chat, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: IS_AUTHENTICATED_ANONYMOUSLY }

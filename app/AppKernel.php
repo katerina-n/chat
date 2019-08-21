@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new ApiBundle\ApiBundle(),
             new AccountBundle\AccountBundle(),
+            new LightSaml\SymfonyBridgeBundle\LightSamlSymfonyBridgeBundle(),
+            new LightSaml\SpBundle\LightSamlSpBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

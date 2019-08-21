@@ -28,3 +28,9 @@ services:
 
 #       calls:
 #          - [setRepository, 'api.repository.chat_repository']
+
+    app.security.admin_user_mock_provider:
+        class: AppBundle\Security\AdminUserMockProvider
+
+    attribute_mapper:
+        class: AppBundle\Security\User\AttributeMapper
