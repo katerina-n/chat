@@ -108,3 +108,18 @@ knp_paginator:
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
 
+light_saml_symfony_bridge:
+    own:
+        entity_id:  http://127.0.0.1:8000/backoffice
+        credentials:
+        -
+            certificate: "%kernel.root_dir%/config/saml/idp-signing.crt"
+            ## "%kernel.root_dir%/../vendor/lightsaml/lightsaml/web/sp/saml.crt"
+            key: "%kernel.root_dir%/../vendor/lightsaml/lightsaml/web/sp/saml.key"
+            password:    ~
+    party:
+        idp:
+            files:
+                - "%kernel.root_dir%/config/saml/saml2-metadata-idp.xml"
+
+
